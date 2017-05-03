@@ -25,14 +25,19 @@
 
 #include "cityhash.h"
 
-static const uint64_t k0 = 0xc3a5c85c97cb3127ULL;
-static const uint64_t kseed0 = 1234567;
-static const uint64_t kseed1 = k0;
-static const uint128_t kseed128 = {kseed0, kseed1};
-static const int kdata_size = 1 << 20;
-static const int ktest_size = 300;
+#define KSEED_0 0xc3a5c85c97cb3127ULL
+#define KSEED_1 1234567
+#define KDATA_SIZE (1 << 20)
+#define KTEST_SIZE 300
 
-static uint8_t data[kdata_size];
+static uint64_t k0 = KSEED_0;
+static uint64_t kseed0 = KSEED_1;
+static uint64_t kseed1 = KSEED_0;
+static uint128_t kseed128 = {KSEED_0, KSEED_1};
+static int kdata_size = KDATA_SIZE;
+static int ktest_size = KTEST_SIZE;
+
+static uint8_t data[KDATA_SIZE];
 
 static int errors = 0; // global error count
 
@@ -54,7 +59,7 @@ void setup() {
   }
 }
 
-static const uint64_t testdata[ktest_size][16] = {
+static const uint64_t testdata[KTEST_SIZE][16] = {
     {0x9ae16a3b2f90404f, 0x75106db890237a4a, 0x3feac5f636039766,
      0x3df09dfc64c09a2b, 0x3cb540c392e51e29, 0x6b56343feac0663,
      0x5b7bc50fd8e8ad92, 0x3df09dfc64c09a2b, 0x3cb540c392e51e29,
