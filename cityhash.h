@@ -64,13 +64,7 @@
 
 #include <stdlib.h>
 #include <stdint.h>
-
-struct uint128_t {
-  uint64_t a;
-  uint64_t b;
-};
-
-typedef struct uint128_t uint128_t;
+#include "largeint.h"
 
 // hash function for a byte array
 uint64_t cityhash64(const uint8_t* buf, size_t len);
@@ -117,15 +111,6 @@ static inline uint64_t hash_128_to_64(const uint128_t x) {
 // conditionally include declarations for versions of city that require SSE4.2
 // instructions to be available
 #if defined(__SSE4_2__) && defined(__x86_64)
-
-struct uint256_t {
-  uint64_t a;
-  uint64_t b;
-  uint64_t c;
-  uint64_t d;
-};
-
-typedef struct uint256_t uint256_t;
 
 // hash function for a byte array
 uint128_t cityhash128_crc(const uint8_t* s, size_t len);
